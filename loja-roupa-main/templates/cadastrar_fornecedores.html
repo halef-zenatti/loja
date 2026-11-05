@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar Fornecedores — Moda Store{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="card shadow-sm p-4 mx-auto" style="max-width: 700px;">
+    <h3 class="mb-4 text-dark text-center">Cadastro de Fornecedor</h3>
+
+    <form action="{{ url_for('cadastrar_fornecedores') }}" method="POST">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="nome" class="form-label">Nome Fornecedor</label>
+          <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="col-md-6">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input type="text" class="form-control" id="telefone" name="telefone">
+        </div>
+        <div class="col-md-4">
+          <label for="cnpj" class="form-label">CNPJ</label>
+          <input type="text" class="form-control" id="cnpj" name="cnpj">
+        </div>
+        <div class="col-md-8">
+          <label for="endereco" class="form-label">Endereço</label>
+          <input type="text" class="form-control" id="endereco" name="endereco">
+        </div>
+        <div class="col-md-6">
+          <label for="segmento_produtos" class="form-label">Segmento de Produtos</label>
+          <input type="text" class="form-control" id="segmento_produtos" name="segmento_produtos">
+        </div>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-md-content-end mt-4">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary me-md-2">Cancelar</a>
+        <button type="submit" class="btn btn-primary fw-bold">Salvar Cadastro</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

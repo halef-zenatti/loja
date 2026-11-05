@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Listagem de Usuários — Moda Store{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="card shadow-sm p-4 border-0">
+    
+    <!-- Cabeçalho com Título e Botão Adicionar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-normal text-dark m-0">Listagem de Usuários</h2>
+      <a href="{{ url_for('cadastrar_usuarios') }}" class="btn btn-success fw-bold text-uppercase px-3">
+        Adicionar Usuário
+      </a>
+    </div>
+
+    
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr class="text-uppercase small fw-bold">
+            <th scope="col" class="py-3">ID</th>
+            <th scope="col" class="py-3">NOME</th>
+            <th scope="col" class="py-3">EMAIL</th>
+            <th scope="col" class="py-3">CELULAR</th>
+            <th scope="col" class="py-3">NÍVEL</th>
+            <th scope="col" class="py-3 text-center">AÇÕES</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for email, user in usuarios.items() %}
+            <tr>
+              <td>{{ user.id or loop.index }}</td>
+              <td>{{ user.nome }}</td>
+              <td>{{ email }}</td>
+              <td>{{ user.celular or '—' }}</td>
+              <td>{{ user.nivel_acesso or 'Usuário' }}</td>
+              <td class="text-center">
+                <a href="#" class="btn btn-warning btn-sm me-1 text-dark fw-normal px-3" style="background-color: #ffc107; border: none;">
+                  Editar
+                </a>
+                <a href="{{ url_for('excluir_usuario', email=email) }}" 
+                   class="btn btn-danger btn-sm text-white fw-normal px-3" 
+                   style="background-color: #dc3545; border: none;"
+                   onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                  Excluir
+                </a>
+              </td>
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="6" class="text-center text-muted py-4">
+                Nenhum usuário cadastrado.
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
